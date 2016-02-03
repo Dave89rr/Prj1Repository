@@ -88,9 +88,8 @@ app.controller('MainCtrl', [
 
 app.controller('PostsCtrl', [
   '$scope',
-  //'$stateParams',
   'posts',
-  'post', //Comment Back
+  'post', 
   function($scope, posts, post){
     $scope.post = post;
 
