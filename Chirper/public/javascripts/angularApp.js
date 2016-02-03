@@ -90,7 +90,11 @@ app.controller('MainCtrl', [
 app.controller('PostsCtrl', [
   '$scope',
   'posts',
+<<<<<<< HEAD
   'post',
+=======
+  'post', 
+>>>>>>> origin/master
   function($scope, posts, post){
     $scope.post = post;
 
