@@ -21,7 +21,7 @@ router.get('/posts', function(req, res, next) {
 router.post('/posts/', function(req, res, next) {
   var post = new Post(req.body);
 
-  post.save(function(err, post) {
+  post.save(function(err, post){
     if (err) { return next(err); }
 
     res.json(post);
@@ -31,7 +31,7 @@ router.post('/posts/', function(req, res, next) {
 router.param('post', function(req, res, next, id) {
   var query = Post.findById(id);
 
-  query.exec(function(err, post) {
+  query.exec(function(err, post){
     if (err) { return next(err); }
     if (!post) { return next(new Error("Can't find post")); }
 
@@ -81,7 +81,7 @@ router.post('/posts/:posts/comments', function(req, res, next) {
   var comment = new Comment(req.body);
   comment.post = req.post;
 
-  comment.save(function(err, comment) {
+  comment.save(function(err, comment){
     if (err) { return next(err); }
 
     req.post.comments.push(comment);
@@ -93,19 +93,5 @@ router.post('/posts/:posts/comments', function(req, res, next) {
   });
 });
 
-
-//
-//
-//
-//
-// router.get('/posts/:post/comments/', function(req, res) {
-//   req.post.populate('comments', function(err, post) {
-//     if (err) { return next(err); }
-//
-//     res.json(post);
-//   });
-// });
-//
-//
 
 module.exports = router;
