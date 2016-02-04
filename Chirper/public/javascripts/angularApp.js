@@ -103,8 +103,8 @@ app.controller('PostsCtrl', [
       });
       $scope.body = '';
     };
-
     $scope.incrementUpvotes = function(comment){
-  posts.upvoteComment(post, comment);
-};
+      posts.upvoteComment(post, comment);
+    };
+
   }]);
