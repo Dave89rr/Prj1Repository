@@ -13,7 +13,7 @@ var passport = require('passport');
 
 var Post = mongoose.model('Post');
 var Comment = mongoose.model('Comment');
-var User = mongoose.model('User');
+var User = mongoose.model('Users');
 
 
 router.post('/register', function(req, res, next){
@@ -33,6 +33,7 @@ router.post('/register', function(req, res, next){
     return res.json({token: user.generateJWT()})
   });
 });
+
 router.post('/login', function(req, res, next){
   if(!req.body.username || !req.body.password){
     return res.status(400).json({message: 'Please fill out all fields'});
@@ -120,7 +121,7 @@ router.put('/posts/:post/comments/:comment/upvote', auth, function(req, res, nex
 router.post('/posts/:post/comments', auth, function(req, res, next) {
   var comment = new Comment(req.body);
   comment.post = req.post;
-  post.author = req.payload.username;
+  comment.author = req.payload.username;
 
   comment.save(function(err, comment){
     if(err){ return next(err); }

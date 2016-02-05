@@ -36,5 +36,4 @@ UserSchema.methods.generateJWT = function() {
 };
 
 
-mongoose.model('User', UserSchema);
-
+mongoose.model('Users', UserSchema);
