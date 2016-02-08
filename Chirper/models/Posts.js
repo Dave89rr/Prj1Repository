@@ -13,7 +13,7 @@ PostSchema.methods.upvote = function(cb) {
 };
 
 PostSchema.methods.downvote = function(cb) {
-  this.downvotes -= 1;
+  this.upvotes -= 1;
   this.save(cb);
 };
 mongoose.model('Post', PostSchema);
