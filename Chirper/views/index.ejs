@@ -28,7 +28,17 @@
         <div class="page-header">
           <h1><img src="/images/Fit-Chirper-Logo.png" height="65" width="65" alt="Chirper Logo" style="margin-top:-55px;margin-right:-12px;">Chirper</h1>
         </div>
-
+        <form ng-submit="addPost()" style="margin-top:30px;">
+          <h3>Add a new post</h3>
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Title" ng-model="title">
+            </input>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Link" ng-model="link"></input>
+          </div>
+          <button type="submit" class="btn btn-primary" style="margin-bottom:20px;">Post</button>
+        </form>
         <div ng-repeat="post in posts">
           <div class="row">
             <div class="col-sm-2">
@@ -61,19 +71,8 @@
             </div>
           </div>
         </div>
-
-        <form ng-submit="addPost()" style="margin-top:30px;">
-          <h3>Add a new post</h3>
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Title" ng-model="title">
-            </input>
-          </div>
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Link" ng-model="link"></input>
-          </div>
-          <button type="submit" class="btn btn-primary">Post</button>
-        </form>
       </script>
+
       <script type="text/ng-template" id="/posts.html">
         <div class="page-header">
           <h3>
@@ -87,83 +86,58 @@
         </div>
 
         <div ng-repeat="comment in post.comments  | orderBy: '-upvotes'">
-        <span class="glyphicon glyphicon-thumbs-up"
-        ng-click="incrementUpvotes(comment)"></span>
-        {{comment.upvotes}} - by {{comment.author}}
-        <span style="font-size:20px; margin-left:10px;">
-        {{comment.body}}
-        </span>
+          <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(comment)">
+          </span>
+            {{comment.upvotes}} - by {{comment.author}}
+          <span style="font-size:20px; margin-left:10px;">
+            {{comment.body}}
+          </span>
         </div>
         <form ng-submit="addComment()"
-        style="margin-top:30px;">
-        <h3>Add a new comment</h3>
-
-        <div class="form-group">
-        <input type="text"
-        class="form-control"
-        placeholder="Comment"
-        ng-model="body"></input>
-        </div>
-        <button type="submit" class="btn btn-primary">Post</button>
+          style="margin-top:30px;">
+          <h3>Add a new comment</h3>
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Comment" ng-model="body"></input>
+          </div>
+          <button type="submit" class="btn btn-primary">Post</button>
         </form>
-        </script>
+      </script>
 
       <script type="text/ng-template" id="/register.html">
-      <div class="browser_width grpelem" id="u130-4"></div>
-      <div class="page-header">
-      <h1><img src="/images/Fit-Chirper-Logo.png" height="65" width="65" alt="Chirper Logo" style="margin-top:-55px;margin-right:-12px;">Chirper</h1>
-      </div>
-
-      <div ng-show="error" class="alert alert-danger row">
-      <span>{{ error.message }}</span>
-      </div>
-
-      <form ng-submit="register()"
-      style="margin-top:30px;">
-      <h3>Register</h3>
-
-      <div class="form-group">
-      <input type="text"
-      class="form-control"
-      placeholder="Username"
-      ng-model="user.username"></input>
-      </div>
-      <div class="form-group">
-      <input type="password"
-      class="form-control"
-      placeholder="Password"
-      ng-model="user.password"></input>
-      </div>
-      <button type="submit" class="btn btn-primary">Register</button>
-      </form>
+        <div class="page-header">
+          <h1><img src="/images/Fit-Chirper-Logo.png" height="65" width="65" alt="Chirper Logo" style="margin-top:-55px;margin-right:-12px;">Chirper</h1>
+        </div>
+        <div ng-show="error" class="alert alert-danger row">
+          <span>{{ error.message }}</span>
+        </div>
+        <form ng-submit="register()" style="margin-top:30px;">
+          <h3>Register</h3>
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Username" ng-model="user.username"></input>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" placeholder="Password" ng-model="user.password"></input>
+          </div>
+          <button type="submit" class="btn btn-primary">Register</button>
+        </form>
       </script>
       <script type="text/ng-template" id="/login.html">
-      <div class="page-header">
-      <h1><img src="/images/Fit-Chirper-Logo.png" height="65" width="65" alt="Chirper Logo" style="margin-top:-55px;margin-right:-12px;">Chirper</h1>
-      </div>
-
-      <div ng-show="error" class="alert alert-danger row">
-      <span>{{ error.message }}</span>
-      </div>
-
-      <form ng-submit="logIn()"
-      style="margin-top:30px;">
-      <h3>Log In</h3>
-
-      <div class="form-group">
-      <input type="text"
-      class="form-control"
-      placeholder="Username"
-      ng-model="user.username"></input>
-      </div>
-      <div class="form-group">
-      <input type="password"
-      class="form-control"
-      placeholder="Password"
-      ng-model="user.password"></input>
-      </div>
-      <button type="submit" class="btn btn-primary">Log In</button>
-      </form>
+        <div class="page-header">
+          <h1><img src="/images/Fit-Chirper-Logo.png" height="65" width="65" alt="Chirper Logo" style="margin-top:-55px;margin-right:-12px;">Chirper</h1>
+        </div>
+        <div ng-show="error" class="alert alert-danger row">
+          <span>{{ error.message }}</span>
+        </div>
+        <form ng-submit="logIn()" style="margin-top:30px;">
+          <h3>Log In</h3>
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Username" ng-model="user.username"></input>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" placeholder="Password" ng-model="user.password"></input>
+          </div>
+          <button type="submit" class="btn btn-primary">Log In</button>
+        </form>
       </script>
     </div>
   </div>

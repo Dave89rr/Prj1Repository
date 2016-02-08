@@ -154,6 +154,7 @@ app.controller('MainCtrl', [
       posts.create({
         title: $scope.title,
         link: $scope.link,
+        author: 'user',
       });
       $scope.title = '';
       $scope.link = '';
@@ -178,7 +179,6 @@ app.controller('PostsCtrl', [
       if($scope.body === '') { return; }
       posts.addComment(post._id, {
         body: $scope.body,
-        author: 'user',
       }).success(function(comment) {
         $scope.post.comments.push(comment);
       });
