@@ -118,6 +118,12 @@ app.factory('posts', ['$http', 'auth', function($http, auth){
       post.upvotes += 1;
     });
   };
+  o.downvote = function(post) {
+    return $http.put('/posts/' + post._id + '/upvote', null, {
+      headers: {Authorization: 'Bearer ' + auth.getToken()}}).success(function(data) {
+      post.upvotes -= 1;
+    });
+  };
   o.addComment = function(id, comment) {
     return $http.post('/posts/' + id + '/comments', comment, {
       headers: {Authorization: 'Bearer ' + auth.getToken()}});
@@ -155,6 +161,9 @@ app.controller('MainCtrl', [
 
     $scope.incrementUpvotes = function(post){
       posts.upvote(post);
+    };
+    $scope.decrementVotes = function(post){
+      posts.downvote(post);
     };
 }]);
 
