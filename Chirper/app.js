@@ -11,7 +11,7 @@ require('./models/Comments');
 require('./models/Users');
 require('./Config/passport');
 
-mongoose.connect('mongodb://localhost/news');
+mongoose.connect('mongodb://localhost/chirperdb');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
