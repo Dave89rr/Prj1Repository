@@ -30,7 +30,7 @@
           <h1><img src="/images/Fit-Chirper-Logo.png" height="65" width="65" alt="Chirper Logo" style="margin-top:-55px;margin-right:-12px;">Chirper</h1>
         </div>
         <div class="well">
-          <div ng-show="loginWarning()" ng-controller="WarningCtrl">
+          <div ng-show="loginWarning()">
             <form ng-submit="addPost()" style="margin-top:30px;">
               <h3>Add a new post</h3>
               <div class="form-group">
@@ -94,7 +94,7 @@
           <div ng-hide="loginWarning()" ng-controller="WarningCtrl">
             <h3> Please <a href="/#/login">Log In</a> or <a href="/#/register">Register</a> to add comments or vote on them</h3>
           </div>
-          <div ng-show="loginWarning()" ng-controller="WarningCtrl">
+          <div ng-show="loginWarning()">
             <form ng-submit="addComment()"
               style="margin-top:30px;">
               <h3>Add a new comment</h3>

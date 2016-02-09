@@ -52,10 +52,10 @@ app.factory('auth', ['$http', '$window', function($http, $window){
    var auth = {};
 
   auth.saveToken = function (token){
-  $window.localStorage['chirper-token'] = token;
+  $window.localStorage['chirper-tok'] = token;
   };
   auth.getToken = function (){
-    return $window.localStorage['chirper-token'];
+    return $window.localStorage['chirper-tok'];
   }
 
   auth.isLoggedIn = function() {
@@ -91,7 +91,7 @@ app.factory('auth', ['$http', '$window', function($http, $window){
   };
 
   auth.logOut = function(){
-    $window.localStorage.removeItem('chirper-token');
+    $window.localStorage.removeItem('chirper-tok');
   };
   return auth;
 }]);
@@ -151,8 +151,10 @@ app.factory('posts', ['$http', 'auth', function($http, auth){
 app.controller('MainCtrl', [
   '$scope',
   'posts',
-  function($scope, posts){
+  'auth',
+  function($scope, posts, auth){
     $scope.posts = posts.posts;
+    $scope.loginWarning = auth.isLoggedIn;
 
     $scope.addPost = function(){
       if (!$scope.title || $scope.title === '') { return; }
@@ -178,8 +180,10 @@ app.controller('PostsCtrl', [
   '$scope',
   'posts',
   'post',
-  function($scope, posts, post){
+  'auth',
+  function($scope, posts, post, auth){
     $scope.post = post;
+    $scope.loginWarning = auth.isLoggedIn;
 
     $scope.addComment = function(){
       if($scope.body === '') { return; }
@@ -230,11 +234,4 @@ function($scope, auth){
   $scope.isLoggedIn = auth.isLoggedIn;
   $scope.currentUser = auth.currentUser;
   $scope.logOut = auth.logOut;
-}]);
-
-app.controller('WarningCtrl', [
-  '$scope',
-  'auth',
-  function($scope, auth){
-    $scope.loginWarning = auth.isLoggedIn;
 }]);
