@@ -194,10 +194,10 @@ app.controller('PostsCtrl', [
       });
       $scope.body = '';
     };
-    $scope.incrementUpvotes = function(comment){
+    $scope.incrementComUpvotes = function(comment){
       posts.upvoteComment(post, comment);
     };
-    $scope.decrementVotes = function(comment){
+    $scope.decrementComVotes = function(comment){
       posts.downvoteComment(post, comment);
     };
 
