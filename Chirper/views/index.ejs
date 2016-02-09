@@ -43,7 +43,7 @@
               <button type="submit" class="btn btn-primary" style="margin-bottom:20px;">Post</button>
             </form>
           </div>
-          <div ng-hide="loginWarning()" ng-controller="WarningCtrl">
+          <div ng-hide="loginWarning()">
             <h3> Please <a href="/#/login">Log In</a> or <a href="/#/register">Register</a> to vote on posts or add posts</h3>
           </div>
         </div>
@@ -91,7 +91,7 @@
           </h3>
         </div>
         <div class="well">
-          <div ng-hide="loginWarning()" ng-controller="WarningCtrl">
+          <div ng-hide="loginWarning()">
             <h3> Please <a href="/#/login">Log In</a> or <a href="/#/register">Register</a> to add comments or vote on them</h3>
           </div>
           <div ng-show="loginWarning()">
