@@ -126,6 +126,14 @@ router.put('/posts/:post/comments/:comment/upvote', auth, function(req, res, nex
   });
 });
 
+router.put('/posts/:post/comments/:comment/downvote', auth, function(req, res, next) {
+  req.comment.downvote(function(err, comment) {
+    if (err) { return next(err); }
+
+    res.json(comment);
+  });
+});
+
 router.post('/posts/:post/comments', auth, function(req, res, next) {
   var comment = new Comment(req.body);
   comment.post = req.post;
