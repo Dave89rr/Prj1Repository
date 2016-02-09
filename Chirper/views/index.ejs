@@ -15,6 +15,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li ng-show="isLoggedIn()"><a>{{ currentUser() }}</a></li>
+        <!-- <li ng-show="isLoggedIn()"><a>Post</a></li> -->
         <li ng-show="isLoggedIn()"><a href="" ng-click="logOut()">Log Out</a></li>
         <li ng-hide="isLoggedIn()"><a href="/#/login">Log In</a></li>
         <li ng-hide="isLoggedIn()"><a href="/#/register">Register</a></li>
@@ -28,17 +29,24 @@
         <div class="page-header">
           <h1><img src="/images/Fit-Chirper-Logo.png" height="65" width="65" alt="Chirper Logo" style="margin-top:-55px;margin-right:-12px;">Chirper</h1>
         </div>
-        <form ng-submit="addPost()" style="margin-top:30px;">
-          <h3>Add a new post</h3>
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Title" ng-model="title">
-            </input>
+        <div class="well">
+          <div ng-show="loginWarning()" ng-controller="WarningCtrl">
+            <form ng-submit="addPost()" style="margin-top:30px;">
+              <h3>Add a new post</h3>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Title" ng-model="title">
+                </input>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Link" ng-model="link"></input>
+              </div>
+              <button type="submit" class="btn btn-primary" style="margin-bottom:20px;">Post</button>
+            </form>
           </div>
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Link" ng-model="link"></input>
+          <div ng-hide="loginWarning()" ng-controller="WarningCtrl">
+            <h3> Please <a href="/#/login">Log In</a> or <a href="/#/register">Register</a> to vote on posts or add posts</h3>
           </div>
-          <button type="submit" class="btn btn-primary" style="margin-bottom:20px;">Post</button>
-        </form>
+        </div>
         <div ng-repeat="post in posts">
           <div class="row">
             <div class="col-sm-2">
@@ -48,8 +56,6 @@
                 <span class="glyphicon glyphicon-thumbs-up"></span>
                 <button type="button" class="btn btn-default btn-sm" ng-click="decrementVotes(post)">
                 <span class="glyphicon glyphicon-thumbs-down"></span>
-              <!-- <img src="bird.jpg" class="img-circle" height="55" width="55" alt="Avatar"> -->
-
               </div>
             </div>
             <div class="col-sm-8">
@@ -84,23 +90,46 @@
             </span>
           </h3>
         </div>
-
-        <div ng-repeat="comment in post.comments  | orderBy: '-upvotes'">
-          <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(comment)">
-          </span>
-            {{comment.upvotes}} - by {{comment.author}}
-          <span style="font-size:20px; margin-left:10px;">
-            {{comment.body}}
-          </span>
-        </div>
-        <form ng-submit="addComment()"
-          style="margin-top:30px;">
-          <h3>Add a new comment</h3>
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Comment" ng-model="body"></input>
+        <div class="well">
+          <div ng-hide="loginWarning()" ng-controller="WarningCtrl">
+            <h3> Please <a href="/#/login">Log In</a> or <a href="/#/register">Register</a> to add comments or vote on them</h3>
           </div>
-          <button type="submit" class="btn btn-primary">Post</button>
-        </form>
+          <div ng-show="loginWarning()" ng-controller="WarningCtrl">
+            <form ng-submit="addComment()"
+              style="margin-top:30px;">
+              <h3>Add a new comment</h3>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Comment" ng-model="body"></input>
+              </div>
+              <button type="submit" class="btn btn-primary" style="margin-bottom:30px;">Post</button>
+            </form>
+          </div>
+        </div>
+        <div ng-repeat="comment in post.comments  | orderBy: '-upvotes'">
+          <div class="row">
+            <div class="col-sm-2">
+              <div class="well">
+              {{post.upvotes}}
+              <button type="button" class="btn btn-default btn-sm" ng-click="incrementUpvotes(comment)">
+              <span class="glyphicon glyphicon-thumbs-up"></span>
+              <button type="button" class="btn btn-default btn-sm" ng-click="decrementVotes(comment)">
+              <span class="glyphicon glyphicon-thumbs-down"></span>
+              </div>
+            </div>
+            <div class="col-sm-7">
+              <div class="well">
+                <span style="font-size:20px; margin-left:10px;">
+                  {{comment.body}}
+                </span>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="well">
+                by {{comment.author}}
+              </div>
+            </div>
+          </div>
+        </div>
       </script>
 
       <script type="text/ng-template" id="/register.html">
@@ -141,5 +170,32 @@
       </script>
     </div>
   </div>
+
+  <!-- Following Script Code Taken from
+  http://stackoverflow.com/questions/28364881/how-can-i-modify-ui-bootstrap-dropdown-to-respond-to-a-mouse-hover-over-the-drop -->
+  <script>
+   angular.module('ui.bootstrap.demo', ['ui.bootstrap']);
+   angular.module('ui.bootstrap.demo').controller('DropdownCtrl', function($scope, $log) {
+     $scope.items = [
+       'The first choice!',
+       'And another choice for you.',
+       'but wait! A third!'
+     ];
+
+     $scope.status = {
+       isopen: false
+     };
+
+     $scope.toggled = function(open) {
+       $log.log('Dropdown is now: ', open);
+     };
+
+     $scope.toggleDropdown = function($event) {
+       $event.preventDefault();
+       $event.stopPropagation();
+       $scope.status.isopen = !$scope.status.isopen;
+     };
+   });
+ </script>
 </body>
 </html>
