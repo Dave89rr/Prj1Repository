@@ -30,7 +30,7 @@ https://drive.google.com/file/d/0B10t50zhIuzvck1oaXNpZHV3VE0/view?usp=sharing
 * Computer keyboard
 
 ###### Recommended System Requirements
-* Anti-Ghosting Keyboard
+* Anti-[Ghosting] (https://github.com/Dave89rr/Prj1Repository/#terminology) Keyboard
 
 **_DISCLAIMERS_**
 * Mash away responsibly. Please don't break your keyboard.
@@ -54,6 +54,8 @@ For the moment being, our application will be written entirely in Java.
 * **Mapping**: Assigning of sound bites to specific keys or buttons on your MIDI controller.
 
 * **Ghosting**: the problem that some keyboard keys don't work when multiple keys are pressed simultaneously. It is typically the result of hardware that can't read the given key combination.
+
+[Back to top] (https://github.com/Dave89rr/Prj1Repository/#description)
 
 
 ## Our Beginnings...
