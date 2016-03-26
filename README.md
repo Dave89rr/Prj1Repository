@@ -7,7 +7,7 @@
 
 
 ## Description
-![alt tag] (#Terminology "MIDI Controllers") can be quite expensive (upwards of $200), and hard to come by for just entertainment purposes, and not only that, but the mapping software required to use these controllers may not be entirely user friendly, for those not familiar with the DJ'ing world.
+![alt tag] (https://github.com/soft-eng-practicum/gpg-messaging#terminology "MIDI Controllers") can be quite expensive (upwards of $200), and hard to come by for just entertainment purposes, and not only that, but the ![alt tag] (#terminology "mapping") software required to use these controllers may not be entirely user friendly, for those not familiar with the DJ'ing world.
 Our application will convert a standard computer keyboard into a basic, easy to use midi controller, as well as serve as the mapping software. Mapping, in this instance, simply means assigning sound bites to specific buttons which will be as simple as clicking the button you want to map (within the app), and then selecting the desired sound file.
 
 
